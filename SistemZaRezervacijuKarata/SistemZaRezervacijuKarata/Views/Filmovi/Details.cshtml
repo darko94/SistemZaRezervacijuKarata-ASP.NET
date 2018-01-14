@@ -3,7 +3,7 @@
 @{
     ViewData["Title"] = "Details";
 }
-
+<!--
 <h2>Details</h2>
 
 <div>
@@ -75,4 +75,86 @@
 <div>
     <a asp-action="Edit" asp-route-id="@Model.ID">Edit</a> |
     <a asp-action="Index">Back to List</a>
+</div>
+-->
+
+<div class="col-md-12">
+    <h1>@Html.DisplayFor(model => model.Naslov)</h1>
+    <iframe width="65%" height="400" src="@Html.DisplayFor(model => model.YoutubeUrl)" frameborder="1" allowfullscreen></iframe>
+    <br />
+    <br />
+</div>
+<br />
+<br />
+<div class="row">
+    <div class="col-md-2">
+
+    </div>
+    <div class="col-md-3">
+        <img src="@Html.DisplayFor(model => model.SlikaUrl)" width="223px" height="324px" />
+    </div>
+    <div class="col-md-5">
+        <div class="row">
+            <div class="col-md-11">
+                <p align="justify">@Html.DisplayFor(model => model.Opis)</p>
+                <hr />
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-3">
+                <p align="right"><strong>@Html.DisplayNameFor(model => model.OrgininalniNaslov)</strong></p>
+            </div>
+            <div class="col-md-7">
+                <p align="justify">@Html.DisplayFor(model => model.OrgininalniNaslov)</p>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-3">
+                <p align="right"><strong>@Html.DisplayNameFor(model => model.PocetakPrikazivanja)</strong></p>
+            </div>
+            <div class="col-md-7">
+                <p align="justify">@Html.DisplayFor(model => model.PocetakPrikazivanja)</p>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-3">
+                <p align="right"><strong>@Html.DisplayNameFor(model => model.DuzinaTranjanja)</strong></p>
+            </div>
+            <div class="col-md-7">
+                <p align="justify">@Html.DisplayFor(model => model.DuzinaTranjanja)</p>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-3">
+                <p align="right"><strong>@Html.DisplayNameFor(model => model.Drzava)/@Html.DisplayNameFor(model => model.Godina)</strong></p>
+            </div>
+            <div class="col-md-7">
+                <p align="justify">@Html.DisplayFor(model => model.Drzava)/@Html.DisplayFor(model => model.Godina)</p>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-3">
+                <p align="right"><strong>@Html.DisplayNameFor(model => model.Zanr)</strong></p>
+            </div>
+            <div class="col-md-7">
+                <p align="justify">@Html.DisplayFor(model => model.Zanr)</p>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="row">
+    <div class="col-md-2"></div>
+    <div class="col-md-8">
+        <hr />
+        <h3>Dostupne projekcije:</h3>
+        <p>(Kliknite na projekciju za rezervaciju sedišta)</p>
+
+        <div style="margin-left: 50px; margin-right: 50px;">
+            @foreach (var item in Model.Projekcije)
+            {
+                <h1>@item.Datum</h1>
+
+            }
+        </div>
+    </div>
 </div>

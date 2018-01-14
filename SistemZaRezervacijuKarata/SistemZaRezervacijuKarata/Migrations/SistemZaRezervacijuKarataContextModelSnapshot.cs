@@ -137,7 +137,7 @@ namespace SistemZaRezervacijuKarata.Migrations
             modelBuilder.Entity("SistemZaRezervacijuKarata.Models.Projekcija", b =>
                 {
                     b.HasOne("SistemZaRezervacijuKarata.Models.Film", "Film")
-                        .WithMany()
+                        .WithMany("Projekcije")
                         .HasForeignKey("FilmId")
                         .OnDelete(DeleteBehavior.Cascade);
 

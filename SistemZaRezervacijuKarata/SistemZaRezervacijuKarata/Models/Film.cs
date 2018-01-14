@@ -18,5 +18,7 @@ namespace SistemZaRezervacijuKarata.Models
         public string Opis { get; set; }
         public string YoutubeUrl { get; set; }
         public string SlikaUrl { get; set; }
+
+        public virtual ICollection<Projekcija> Projekcije { get; set; }
     }
 }
