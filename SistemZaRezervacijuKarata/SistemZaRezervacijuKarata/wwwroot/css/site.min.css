@@ -1,1 +1,254 @@
-body{padding-top:50px;padding-bottom:20px}.body-content{padding-left:15px;padding-right:15px}.carousel-caption p{font-size:20px;line-height:1.4}.carousel-inner .item img[src$=".svg"]{width:100%}#qrCode{margin:15px}@media screen and (max-width:767px){.carousel-caption{display:none}}
+.login-box, .table td, .table th, body {
+    text-align: center
+}
+
+.body-content {
+    padding-left: 15px;
+    padding-right: 15px
+}
+
+.carousel-caption p {
+    font-size: 20px;
+    line-height: 1.4
+}
+
+.carousel-inner .item img[src$=".svg"] {
+    width: 100%
+}
+
+#qrCode {
+    margin: 15px
+}
+
+@media screen and (max-width:767px) {
+    .carousel-caption {
+        display: none
+    }
+}
+
+a, a:focus, a:hover {
+    color: #fff
+}
+
+.btn-default, .btn-default:focus, .btn-default:hover {
+    color: #333;
+    text-shadow: none;
+    background-color: #fff;
+    border: 1px solid #fff
+}
+
+body, html {
+    height: 100%;
+    background: url(http://www.sjsnaa.com/images/blue.jpg)
+}
+
+body {
+    padding-top: 50px;
+    padding-bottom: 20px;
+    color: #fff;
+    text-shadow: 0 1px 3px rgba(0,0,0,.5)
+}
+
+.site-wrapper {
+    display: table;
+    width: 100%;
+    height: 100%;
+    min-height: 100%;
+    -webkit-box-shadow: inset 0 0 100px rgba(0,0,0,.5);
+    box-shadow: inset 0 0 100px rgba(0,0,0,.5)
+}
+
+.site-wrapper-inner {
+    display: table-cell;
+    vertical-align: top
+}
+
+.cover-container {
+    margin-right: auto;
+    margin-left: auto
+}
+
+.inner {
+    padding: 30px
+}
+
+.masthead-brand {
+    margin-top: 10px;
+    margin-bottom: 10px
+}
+
+.masthead-nav > li {
+    display: inline-block
+}
+
+    .masthead-nav > li + li {
+        margin-left: 20px
+    }
+
+    .masthead-nav > li > a {
+        padding-right: 0;
+        padding-left: 0;
+        font-size: 16px;
+        font-weight: 700;
+        color: #fff;
+        color: rgba(255,255,255,.75);
+        border-bottom: 2px solid transparent
+    }
+
+        .masthead-nav > li > a:focus, .masthead-nav > li > a:hover {
+            background-color: transparent;
+            border-bottom-color: #a9a9a9;
+            border-bottom-color: rgba(255,255,255,.25)
+        }
+
+.masthead-nav > .active > a, .masthead-nav > .active > a:focus, .masthead-nav > .active > a:hover {
+    color: #fff;
+    border-bottom-color: #fff
+}
+
+.cover {
+    padding: 0 20px
+}
+
+    .cover .btn-lg {
+        padding: 10px 20px;
+        font-weight: 700
+    }
+
+.mastfoot {
+    color: #999;
+    color: rgba(255,255,255,.5)
+}
+
+@media (min-width:768px) {
+    .masthead-brand {
+        float: left
+    }
+
+    .masthead-nav {
+        float: right
+    }
+
+    .masthead {
+        position: fixed;
+        top: 0
+    }
+
+    .mastfoot {
+        position: inherit;
+        bottom: 0
+    }
+
+    .site-wrapper-inner {
+        vertical-align: middle
+    }
+
+    .cover-container, .mastfoot, .masthead {
+        width: 100%
+    }
+}
+
+@media (min-width:992px) {
+    .cover-container, .mastfoot, .masthead {
+        width: 700px
+    }
+}
+
+.container-wrapper {
+    height: 80%;
+    margin: 80px auto auto
+}
+
+.home-image {
+    display: block;
+    width: 100% !important;
+    height: auto !important
+}
+
+.table {
+    table-layout: fixed;
+    overflow: auto
+}
+
+    .table td {
+        background: #f5f5f5;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap
+    }
+
+.dropbtn, .dropdown-content {
+    background-color: transparent
+}
+
+.login-container {
+    width: 30%;
+    margin: 80px auto 70px
+}
+
+.register-link {
+    color: #286090
+}
+
+.register-container {
+    width: 40%;
+    margin: -50px auto auto
+}
+
+    .register-container .form-group {
+        margin-top: -5px
+    }
+
+    .register-container h1 {
+        margin-bottom: -10px
+    }
+
+.register-success-container {
+    margin: 100px auto auto
+}
+
+.dropbtn {
+    color: #fff;
+    padding: 16px;
+    border: none;
+    cursor: pointer
+}
+
+.dropdown {
+    position: relative;
+    display: inline-block
+}
+
+.dropdown-content {
+    display: none;
+    position: absolute;
+    min-width: 90px
+}
+
+    .dropdown-content a {
+        color: #fff;
+        text-decoration: none;
+        display: block
+    }
+
+        .dropdown-content a:hover {
+            background-color: gray
+        }
+
+.dropdown:hover .dropdown-content {
+    display: block
+}
+
+.dropdown:hover .dropbtn {
+    background-color: transparent
+}
+
+.add-film-container {
+    width: 40%;
+    margin: -30px auto auto
+}
+
+.film-img {
+    width: 202px;
+    height: 293px
+}
