@@ -11,9 +11,10 @@ using System;
 namespace SistemZaRezervacijuKarata.Migrations
 {
     [DbContext(typeof(SistemZaRezervacijuKarataContext))]
-    partial class SistemZaRezervacijuKarataContextModelSnapshot : ModelSnapshot
+    [Migration("20180114101342_Korisnik")]
+    partial class Korisnik
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -98,26 +99,6 @@ namespace SistemZaRezervacijuKarata.Migrations
                     b.ToTable("Projekcija");
                 });
 
-            modelBuilder.Entity("SistemZaRezervacijuKarata.Models.Rezervacija", b =>
-                {
-                    b.Property<int>("ID")
-                        .ValueGeneratedOnAdd();
-
-                    b.Property<int>("BrojKarata");
-
-                    b.Property<int>("KorisnikId");
-
-                    b.Property<int>("ProjekcijaId");
-
-                    b.HasKey("ID");
-
-                    b.HasIndex("KorisnikId");
-
-                    b.HasIndex("ProjekcijaId");
-
-                    b.ToTable("Rezervacija");
-                });
-
             modelBuilder.Entity("SistemZaRezervacijuKarata.Models.Sala", b =>
                 {
                     b.Property<int>("ID")
@@ -144,19 +125,6 @@ namespace SistemZaRezervacijuKarata.Migrations
                     b.HasOne("SistemZaRezervacijuKarata.Models.Sala", "Sala")
                         .WithMany()
                         .HasForeignKey("SalaId")
-                        .OnDelete(DeleteBehavior.Cascade);
-                });
-
-            modelBuilder.Entity("SistemZaRezervacijuKarata.Models.Rezervacija", b =>
-                {
-                    b.HasOne("SistemZaRezervacijuKarata.Models.Korisnik", "Korisnik")
-                        .WithMany()
-                        .HasForeignKey("KorisnikId")
-                        .OnDelete(DeleteBehavior.Cascade);
-
-                    b.HasOne("SistemZaRezervacijuKarata.Models.Projekcija", "Projekcija")
-                        .WithMany()
-                        .HasForeignKey("ProjekcijaId")
                         .OnDelete(DeleteBehavior.Cascade);
                 });
 #pragma warning restore 612, 618
