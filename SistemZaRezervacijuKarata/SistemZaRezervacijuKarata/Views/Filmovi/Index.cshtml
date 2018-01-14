@@ -1,0 +1,89 @@
+﻿@model IEnumerable<SistemZaRezervacijuKarata.Models.Film>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h2>Index</h2>
+
+<p>
+    <a asp-action="Create">Create New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+                <th>
+                    @Html.DisplayNameFor(model => model.Naslov)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.OrgininalniNaslov)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.PocetakPrikazivanja)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.DuzinaTranjanja)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Drzava)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Godina)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Zanr)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Opis)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.YoutubeUrl)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.SlikaUrl)
+                </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Naslov)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.OrgininalniNaslov)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.PocetakPrikazivanja)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.DuzinaTranjanja)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Drzava)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Godina)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Zanr)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Opis)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.YoutubeUrl)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.SlikaUrl)
+            </td>
+            <td>
+                <a asp-action="Edit" asp-route-id="@item.ID">Edit</a> |
+                <a asp-action="Details" asp-route-id="@item.ID">Details</a> |
+                <a asp-action="Delete" asp-route-id="@item.ID">Delete</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

@@ -1,0 +1,51 @@
+﻿@model SistemZaRezervacijuKarata.Models.Projekcija
+
+@{
+    ViewData["Title"] = "Delete";
+}
+
+<h2>Delete</h2>
+
+<h3>Are you sure you want to delete this?</h3>
+<div>
+    <h4>Projekcija</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Datum)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Datum)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Vreme)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Vreme)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.SlobodnoSedista)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.SlobodnoSedista)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Film)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Film.ID)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Sala)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Sala.ID)
+        </dd>
+    </dl>
+    
+    <form asp-action="Delete">
+        <input type="hidden" asp-for="ID" />
+        <input type="submit" value="Delete" class="btn btn-default" /> |
+        <a asp-action="Index">Back to List</a>
+    </form>
+</div>
