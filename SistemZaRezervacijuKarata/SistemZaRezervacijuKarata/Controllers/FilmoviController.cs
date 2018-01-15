@@ -39,7 +39,7 @@ namespace SistemZaRezervacijuKarata.Controllers
                 return NotFound();
             }
 
-            film.Projekcije = _context.Projekcija.Where(p => p.FilmId == id).ToList();
+            film.Projekcije = _context.Projekcija.Include(p => p.Sala).Where(p => p.FilmId == id).ToList();
 
             return View(film);
         }

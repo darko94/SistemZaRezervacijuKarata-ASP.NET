@@ -102,7 +102,7 @@
         </div>
         <div class="row">
             <div class="col-md-3">
-                <p align="right"><strong>@Html.DisplayNameFor(model => model.OrgininalniNaslov)</strong></p>
+                <p align="right"><strong>@Html.DisplayNameFor(model => model.OrgininalniNaslov):</strong></p>
             </div>
             <div class="col-md-7">
                 <p align="justify">@Html.DisplayFor(model => model.OrgininalniNaslov)</p>
@@ -110,15 +110,15 @@
         </div>
         <div class="row">
             <div class="col-md-3">
-                <p align="right"><strong>@Html.DisplayNameFor(model => model.PocetakPrikazivanja)</strong></p>
+                <p align="right"><strong>@Html.DisplayNameFor(model => model.PocetakPrikazivanja):</strong></p>
             </div>
             <div class="col-md-7">
-                <p align="justify">@Html.DisplayFor(model => model.PocetakPrikazivanja)</p>
+                <p align="justify">@Html.DisplayFor(model => model.PocetakPrikazivanja.Day).@Html.DisplayFor(model => model.PocetakPrikazivanja.Month).@Html.DisplayFor(model => model.PocetakPrikazivanja.Year).</p>
             </div>
         </div>
         <div class="row">
             <div class="col-md-3">
-                <p align="right"><strong>@Html.DisplayNameFor(model => model.DuzinaTranjanja)</strong></p>
+                <p align="right"><strong>@Html.DisplayNameFor(model => model.DuzinaTranjanja):</strong></p>
             </div>
             <div class="col-md-7">
                 <p align="justify">@Html.DisplayFor(model => model.DuzinaTranjanja)</p>
@@ -126,7 +126,7 @@
         </div>
         <div class="row">
             <div class="col-md-3">
-                <p align="right"><strong>@Html.DisplayNameFor(model => model.Drzava)/@Html.DisplayNameFor(model => model.Godina)</strong></p>
+                <p align="right"><strong>@Html.DisplayNameFor(model => model.Drzava)/@Html.DisplayNameFor(model => model.Godina):</strong></p>
             </div>
             <div class="col-md-7">
                 <p align="justify">@Html.DisplayFor(model => model.Drzava)/@Html.DisplayFor(model => model.Godina)</p>
@@ -134,7 +134,7 @@
         </div>
         <div class="row">
             <div class="col-md-3">
-                <p align="right"><strong>@Html.DisplayNameFor(model => model.Zanr)</strong></p>
+                <p align="right"><strong>@Html.DisplayNameFor(model => model.Zanr):</strong></p>
             </div>
             <div class="col-md-7">
                 <p align="justify">@Html.DisplayFor(model => model.Zanr)</p>
@@ -152,7 +152,9 @@
         <div style="margin-left: 50px; margin-right: 50px;">
             @foreach (var item in Model.Projekcije)
             {
-                <h1>@item.Datum</h1>
+                <a asp-action="" class="btn btn-primary" style="margin: 10px;">
+                    <p>@item.Datum.Day.@item.Datum.Month.@item.Datum.Year., @item.Vreme.ToShortTimeString() - @item.Sala.Naziv</p>
+                </a>
 
             }
         </div>
