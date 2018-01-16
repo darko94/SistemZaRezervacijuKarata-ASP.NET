@@ -98,8 +98,8 @@
             <a asp-action="Details" asp-route-id="@item.ID" style="text-align: center; color: #eeeeee;">
                 <img src="@item.SlikaUrl" width="202px" height="293px"/>
                 <h4>@item.Naslov</h4>
-                <a asp-action="Edit" asp-route-id="@item.ID" class="btn btn-default">Izmeni</a>
-                <a asp-action="Delete" asp-route-id="@item.ID" class="btn btn-danger">Obriši</a>
+                <a asp-action="Edit" asp-route-id="@item.ID" class="btn btn-default"><span class="glyphicon glyphicon-pencil"></span> Izmeni</a>
+                <a asp-action="Delete" asp-route-id="@item.ID" class="btn btn-danger"><span class="glyphicon glyphicon-remove"></span> Obriši</a>
             </a>
         </div>
     </div>

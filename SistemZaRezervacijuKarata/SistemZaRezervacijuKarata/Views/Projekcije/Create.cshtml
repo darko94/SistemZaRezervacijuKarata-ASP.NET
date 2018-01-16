@@ -1,23 +1,22 @@
 ﻿@model SistemZaRezervacijuKarata.Models.Projekcija
 
 @{
-    ViewData["Title"] = "Create";
+    ViewData["Title"] = "Dodavanje nove projekcije";
 }
 
-<h2>Create</h2>
+<h2>Dodavanje nove projekcije</h2>
 
-<h4>Projekcija</h4>
 <hr />
 <div class="row">
-    <div class="col-md-4">
+    <div class="container add-film-container">
         <form asp-action="Create">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <div class="form-group">
-                <label asp-for="FilmId" class="control-label"></label>
+                <label asp-for="Film" class="control-label"></label>
                 <select asp-for="FilmId" class ="form-control" asp-items="ViewBag.FilmId"></select>
             </div>
             <div class="form-group">
-                <label asp-for="SalaId" class="control-label"></label>
+                <label asp-for="Sala" class="control-label"></label>
                 <select asp-for="SalaId" class ="form-control" asp-items="ViewBag.SalaId"></select>
             </div>
             <div class="form-group">
@@ -31,19 +30,14 @@
                 <span asp-validation-for="Vreme" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="SlobodnoSedista" class="control-label"></label>
-                <input asp-for="SlobodnoSedista" class="form-control" />
-                <span asp-validation-for="SlobodnoSedista" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <input type="submit" value="Create" class="btn btn-default" />
+                <input type="submit" value="Dodaj projekciju" class="btn btn-primary" />
             </div>
         </form>
     </div>
 </div>
 
 <div>
-    <a asp-action="Index">Back to List</a>
+    <a asp-action="Index" class="btn btn-default btn-sm">Odustani</a>
 </div>
 
 @section Scripts {

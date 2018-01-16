@@ -1,15 +1,14 @@
 ﻿@model SistemZaRezervacijuKarata.Models.Sala
 
 @{
-    ViewData["Title"] = "Edit";
+    ViewData["Title"] = "Izmena sale";
 }
 
-<h2>Edit</h2>
+<h2>Izmena sale</h2>
 
-<h4>Sala</h4>
 <hr />
 <div class="row">
-    <div class="col-md-4">
+    <div class="container add-film-container">
         <form asp-action="Edit">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <input type="hidden" asp-for="ID" />
@@ -29,14 +28,14 @@
                 <span asp-validation-for="Tehnologija" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <input type="submit" value="Save" class="btn btn-default" />
+                <input type="submit" value="Izmeni" class="btn btn-primary" />
             </div>
         </form>
     </div>
 </div>
 
 <div>
-    <a asp-action="Index">Back to List</a>
+    <a asp-action="Index" class="btn btn-default btn-sm">Odustani</a>
 </div>
 
 @section Scripts {

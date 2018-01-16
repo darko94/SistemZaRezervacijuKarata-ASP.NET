@@ -1,10 +1,10 @@
 ﻿@model IEnumerable<SistemZaRezervacijuKarata.Models.Sala>
 
 @{
-    ViewData["Title"] = "Index";
+    ViewData["Title"] = "Sale";
 }
 
-<h2>Index</h2>
+<!--<h2>Index</h2>
 
 <p>
     <a asp-action="Create">Create New</a>
@@ -45,3 +45,33 @@
 }
     </tbody>
 </table>
+    -->
+
+<div class="container">
+    <hr />
+    <a asp-area="" asp-controller="Sale" asp-action="Create" class="btn btn-primary btn-lg">Dodaj novu salu</a>
+    <hr />
+    <table class="table table-striped table-hover">
+        <thead>
+            <tr class="active" style="color: black;">
+                <th>@Html.DisplayNameFor(model => model.Naziv)</th>
+                <th>@Html.DisplayNameFor(model => model.BrojSedista)</th>
+                <th>@Html.DisplayNameFor(model => model.Tehnologija)</th>
+                <th></th>
+            </tr>
+            @foreach (var item in Model)
+            {
+                <tr class="info" style="color: black;">
+                    <td>@item.Naziv</td>
+                    <td>@item.BrojSedista</td>
+                    <td>@item.Tehnologija</td>
+                    <td>
+                        <a asp-action="Edit" asp-route-id="@item.ID" style="color: black;"><span class="glyphicon glyphicon-pencil"></span> Izmeni</a> |
+                        <a asp-action="Details" asp-route-id="@item.ID" style="color: black;"><span class="glyphicon glyphicon-info-sign"></span> Detalji</a> |
+                        <a asp-action="Delete" asp-route-id="@item.ID" style="color: black;"><span class="glyphicon glyphicon-remove"></span> Obriši</a>
+                    </td>
+                </tr>
+            }
+        </thead>
+    </table>
+</div>

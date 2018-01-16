@@ -48,8 +48,8 @@ namespace SistemZaRezervacijuKarata.Controllers
         // GET: Projekcije/Create
         public IActionResult Create()
         {
-            ViewData["FilmId"] = new SelectList(_context.Film, "ID", "ID");
-            ViewData["SalaId"] = new SelectList(_context.Sala, "ID", "ID");
+            ViewData["FilmId"] = new SelectList(_context.Film, "ID", "Naslov");
+            ViewData["SalaId"] = new SelectList(_context.Sala, "ID", "Naziv");
             return View();
         }
 
@@ -60,14 +60,15 @@ namespace SistemZaRezervacijuKarata.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create([Bind("ID,FilmId,SalaId,Datum,Vreme,SlobodnoSedista")] Projekcija projekcija)
         {
+            projekcija.SlobodnoSedista = _context.Sala.Where(m => m.ID == projekcija.SalaId).SingleOrDefault().BrojSedista;
             if (ModelState.IsValid)
             {
                 _context.Add(projekcija);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
-            ViewData["FilmId"] = new SelectList(_context.Film, "ID", "ID", projekcija.FilmId);
-            ViewData["SalaId"] = new SelectList(_context.Sala, "ID", "ID", projekcija.SalaId);
+            ViewData["FilmId"] = new SelectList(_context.Film, "ID", "Naslov", projekcija.FilmId);
+            ViewData["SalaId"] = new SelectList(_context.Sala, "ID", "Naziv", projekcija.SalaId);
             return View(projekcija);
         }
 
@@ -84,8 +85,8 @@ namespace SistemZaRezervacijuKarata.Controllers
             {
                 return NotFound();
             }
-            ViewData["FilmId"] = new SelectList(_context.Film, "ID", "ID", projekcija.FilmId);
-            ViewData["SalaId"] = new SelectList(_context.Sala, "ID", "ID", projekcija.SalaId);
+            ViewData["FilmId"] = new SelectList(_context.Film, "ID", "Naslov", projekcija.FilmId);
+            ViewData["SalaId"] = new SelectList(_context.Sala, "ID", "Naziv", projekcija.SalaId);
             return View(projekcija);
         }
 
@@ -105,6 +106,7 @@ namespace SistemZaRezervacijuKarata.Controllers
             {
                 try
                 {
+                    projekcija.SlobodnoSedista = _context.Sala.Where(m => m.ID == projekcija.SalaId).SingleOrDefault().BrojSedista;
                     _context.Update(projekcija);
                     await _context.SaveChangesAsync();
                 }
@@ -121,8 +123,8 @@ namespace SistemZaRezervacijuKarata.Controllers
                 }
                 return RedirectToAction(nameof(Index));
             }
-            ViewData["FilmId"] = new SelectList(_context.Film, "ID", "ID", projekcija.FilmId);
-            ViewData["SalaId"] = new SelectList(_context.Sala, "ID", "ID", projekcija.SalaId);
+            ViewData["FilmId"] = new SelectList(_context.Film, "ID", "Naslov", projekcija.FilmId);
+            ViewData["SalaId"] = new SelectList(_context.Sala, "ID", "Naziv", projekcija.SalaId);
             return View(projekcija);
         }
 

@@ -1,10 +1,11 @@
 ﻿@model IEnumerable<SistemZaRezervacijuKarata.Models.Projekcija>
 
 @{
-    ViewData["Title"] = "Index";
+    ViewData["Title"] = "Projekcije";
 }
 
-<h2>Index</h2>
+<!--
+<h2>Projekcije</h2>
 
 <p>
     <a asp-action="Create">Create New</a>
@@ -57,3 +58,36 @@
 }
     </tbody>
 </table>
+ -->
+
+<div class="container">
+    <hr />
+    <a asp-area="" asp-controller="Projekcije" asp-action="Create" class="btn btn-primary btn-lg">Dodaj novu projekciju</a>
+    <hr />
+    <table class="table table-striped table-hover">
+        <thead>
+            <tr class="active" style="color: black;">
+                <th>@Html.DisplayNameFor(model => model.Film)</th>
+                <th>@Html.DisplayNameFor(model => model.Sala)</th>
+                <th>@Html.DisplayNameFor(model => model.Datum) i @Html.DisplayNameFor(model => model.Vreme)</th>
+                <th>@Html.DisplayNameFor(model => model.SlobodnoSedista)</th>
+                <th></th>
+            </tr>
+            @foreach (var item in Model)
+            {
+                <tr class="info" style="color: black;">
+                    <td><a style="color: black;" asp-action="../Filmovi/Details" asp-route-id="@item.FilmId">@item.Film.Naslov</a></td>
+                    <td><a style="color: black;" asp-action="../Sale/Details" asp-route-id="@item.SalaId">@item.Sala.Naziv - @item.Sala.BrojSedista sedišta</a></td>
+                    <td>@item.Datum.ToString("dd.MM.yyyy.") - @item.Vreme.ToString("HH:mm") h</td>
+                    <td>@item.SlobodnoSedista</td>
+                    <td>
+                        <a asp-action="Edit" asp-route-id="@item.ID" style="color: black;"><span class="glyphicon glyphicon-pencil"></span> Izmeni</a> |
+                        <a asp-action="Details" asp-route-id="@item.ID" style="color: black;"><span class="glyphicon glyphicon-info-sign"></span> Detalji</a> |
+                        <a asp-action="Delete" asp-route-id="@item.ID" style="color: black;"><span class="glyphicon glyphicon-remove"></span> Obriši</a>
+                    </td>
+                </tr>
+
+            }
+        </thead>
+    </table> 
+</div>

@@ -1,48 +1,29 @@
 ﻿@model SistemZaRezervacijuKarata.Models.Projekcija
 
 @{
-    ViewData["Title"] = "Details";
+    ViewData["Title"] = "Detalji";
 }
 
-<h2>Details</h2>
+<h2>Detalji</h2>
 
 <div>
-    <h4>Projekcija</h4>
     <hr />
-    <dl class="dl-horizontal">
-        <dt>
-            @Html.DisplayNameFor(model => model.Datum)
-        </dt>
-        <dd>
-            @Html.DisplayFor(model => model.Datum)
-        </dd>
-        <dt>
-            @Html.DisplayNameFor(model => model.Vreme)
-        </dt>
-        <dd>
-            @Html.DisplayFor(model => model.Vreme)
-        </dd>
-        <dt>
-            @Html.DisplayNameFor(model => model.SlobodnoSedista)
-        </dt>
-        <dd>
-            @Html.DisplayFor(model => model.SlobodnoSedista)
-        </dd>
-        <dt>
-            @Html.DisplayNameFor(model => model.Film)
-        </dt>
-        <dd>
-            @Html.DisplayFor(model => model.Film.Naslov)
-        </dd>
-        <dt>
-            @Html.DisplayNameFor(model => model.Sala)
-        </dt>
-        <dd>
-            @Html.DisplayFor(model => model.Sala.Naziv)
-        </dd>
-    </dl>
+
+    <h3>@Html.DisplayNameFor(model => model.Film) : <a asp-action="../Filmovi/Details" asp-route-id="@Html.ValueFor(model => model.FilmId)">@Html.DisplayFor(model => model.Film.Naslov)</a></h3>
+
+    <h3>@Html.DisplayNameFor(model => model.Sala) : <a asp-action="../Sale/Details" asp-route-id="@Html.ValueFor(model => model.SalaId)">@Html.DisplayFor(model => model.Sala.Naziv)</a></h3>
+    
+    <h3>@Html.DisplayNameFor(model => model.Datum) : @Html.DisplayFor(model => model.Datum)</h3>
+
+    <h3>@Html.DisplayNameFor(model => model.Vreme) : @Html.DisplayFor(model => model.Vreme)</h3>      
+
+    <h3>@Html.DisplayNameFor(model => model.SlobodnoSedista) : @Html.DisplayFor(model => model.SlobodnoSedista)</h3>
+    <br />
+
 </div>
 <div>
-    <a asp-action="Edit" asp-route-id="@Model.ID">Edit</a> |
-    <a asp-action="Index">Back to List</a>
+    <a asp-action="Edit" asp-route-id="@Model.ID" class="btn btn-default"><span class="glyphicon glyphicon-pencil"></span> Izmeni</a> |
+    <a asp-action="Delete" asp-route-id="@Model.ID" class="btn btn-danger"><span class="glyphicon glyphicon-remove"></span> Obriši</a>
 </div>
+<br />
+<a asp-action="Index" class="btn btn-default">Povratak na listu</a>
