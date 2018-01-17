@@ -6,9 +6,11 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using SistemZaRezervacijuKarata.Models;
+using Microsoft.AspNetCore.Authorization;
 
 namespace SistemZaRezervacijuKarata.Controllers
 {
+    [Authorize(Roles = "Admin")]
     public class FilmoviController : Controller
     {
         private readonly SistemZaRezervacijuKarataContext _context;
@@ -19,12 +21,14 @@ namespace SistemZaRezervacijuKarata.Controllers
         }
 
         // GET: Filmovi
+        [AllowAnonymous]
         public async Task<IActionResult> Index()
         {
             return View(await _context.Film.ToListAsync());
         }
 
         // GET: Filmovi/Details/5
+        [AllowAnonymous]
         public async Task<IActionResult> Details(int? id)
         {
             if (id == null)

@@ -4,93 +4,14 @@
     ViewData["Title"] = "Filmovi";
 }
 
-<!--<h2>Filmovi</h2>
+@if (this.User.IsInRole("Admin"))
+{
+    <hr />
+    <a asp-area="" asp-controller="Filmovi" asp-action="Create" class="btn btn-primary btn-lg">Dodaj novi film</a>
+    <hr />
 
-<p>
-    <a asp-action="Create">Dodaj novi film</a>
-</p>
-<table class="table">
-    <thead>
-        <tr>
-                <th>
-                    @Html.DisplayNameFor(model => model.Naslov)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.OrgininalniNaslov)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.PocetakPrikazivanja)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.DuzinaTranjanja)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.Drzava)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.Godina)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.Zanr)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.Opis)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.YoutubeUrl)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.SlikaUrl)
-                </th>
-            <th></th>
-        </tr>
-    </thead>
-    <tbody>
-@foreach (var item in Model) {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.Naslov)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.OrgininalniNaslov)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.PocetakPrikazivanja)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.DuzinaTranjanja)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Drzava)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Godina)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Zanr)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Opis)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.YoutubeUrl)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.SlikaUrl)
-            </td>
-            <td>
-                <a asp-action="Edit" asp-route-id="@item.ID">Izmeni</a> |
-                <a asp-action="Details" asp-route-id="@item.ID">Detalji</a> |
-                <a asp-action="Delete" asp-route-id="@item.ID">Obriši</a>
-            </td>
-        </tr>
 }
-    </tbody>
-</table>-->
 
-<hr />
-<a asp-area="" asp-controller="Filmovi" asp-action="Create" class="btn btn-primary btn-lg">Dodaj novi film</a>
-<hr />
 @foreach (var item in Model)
 {
     <div style="display: inline-block; text-align: center;">
@@ -98,8 +19,11 @@
             <a asp-action="Details" asp-route-id="@item.ID" style="text-align: center; color: #eeeeee;">
                 <img src="@item.SlikaUrl" width="202px" height="293px"/>
                 <h4>@item.Naslov</h4>
-                <a asp-action="Edit" asp-route-id="@item.ID" class="btn btn-default"><span class="glyphicon glyphicon-pencil"></span> Izmeni</a>
-                <a asp-action="Delete" asp-route-id="@item.ID" class="btn btn-danger"><span class="glyphicon glyphicon-remove"></span> Obriši</a>
+                @if (this.User.IsInRole("Admin"))
+                {
+                    <a asp-action="Edit" asp-route-id="@item.ID" class="btn btn-default"><span class="glyphicon glyphicon-pencil"></span> Izmeni</a>
+                    <a asp-action="Delete" asp-route-id="@item.ID" class="btn btn-danger"><span class="glyphicon glyphicon-remove"></span> Obriši</a>
+                }
             </a>
         </div>
     </div>

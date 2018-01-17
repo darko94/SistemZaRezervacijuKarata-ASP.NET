@@ -6,9 +6,11 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using SistemZaRezervacijuKarata.Models;
+using Microsoft.AspNetCore.Authorization;
 
 namespace SistemZaRezervacijuKarata.Controllers
 {
+    [Authorize(Roles = "Admin")]
     public class ProjekcijeController : Controller
     {
         private readonly SistemZaRezervacijuKarataContext _context;
