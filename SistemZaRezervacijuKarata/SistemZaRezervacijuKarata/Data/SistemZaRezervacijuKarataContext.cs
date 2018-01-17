@@ -4,10 +4,11 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
 using SistemZaRezervacijuKarata.Models;
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 
 namespace SistemZaRezervacijuKarata.Models
 {
-    public class SistemZaRezervacijuKarataContext : DbContext
+    public class SistemZaRezervacijuKarataContext : IdentityDbContext<ApplicationUser>
     {
         public SistemZaRezervacijuKarataContext (DbContextOptions<SistemZaRezervacijuKarataContext> options)
             : base(options)
