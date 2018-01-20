@@ -319,3 +319,7 @@ body {
     width: 202px;
     height: 293px;
 }
+
+ul.nav a:hover {
+    background-color: #428BCA !important;
+}

@@ -13,7 +13,7 @@ namespace SistemZaRezervacijuKarata.Services
     {
         public Task SendEmailAsync(string email, string subject, string message)
         {
-            MailMessage mail = new MailMessage("rezervacija355@gmail.com", email, subject, message);
+            MailMessage mail = new MailMessage("rezervacija322@gmail.com", email, subject, message);
             mail.BodyEncoding = UTF8Encoding.UTF8;
             mail.DeliveryNotificationOptions = DeliveryNotificationOptions.OnFailure;
             mail.IsBodyHtml = true;
@@ -25,7 +25,7 @@ namespace SistemZaRezervacijuKarata.Services
             smtpClient.Timeout = 10000;
             smtpClient.DeliveryMethod = SmtpDeliveryMethod.Network;
             smtpClient.UseDefaultCredentials = false;
-            smtpClient.Credentials = new System.Net.NetworkCredential("rezervacija355@gmail.com", "rezervacija123");
+            smtpClient.Credentials = new System.Net.NetworkCredential("rezervacija322@gmail.com", "rezervacija123");
 
 
             smtpClient.Send(mail);

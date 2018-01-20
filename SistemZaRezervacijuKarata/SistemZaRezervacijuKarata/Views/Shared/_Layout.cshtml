@@ -17,8 +17,7 @@
     </environment>
 </head>
 <body>
-    <nav class="navbar navbar-inverse navbar-fixed-top">
-        <div class="container">
+        <div class="container inner">
             <div class="navbar-header">
                 <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
                     <span class="sr-only">Toggle navigation</span>
@@ -26,15 +25,19 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a asp-area="" asp-controller="Home" asp-action="Index" class="navbar-brand">SistemZaRezervacijuKarata</a>
+                <a asp-area="" asp-controller="Filmovi" asp-action="Index" class="navbar-brand">Sistem za rezervaciju karata - Filmovi</a>
             </div>
             <div class="navbar-collapse collapse">
                 <ul class="nav navbar-nav">
-                    <li><a asp-area="" asp-controller="Filmovi" asp-action="Index">Filmovi</a></li>
-                    <li><a asp-area="" asp-controller="Sale" asp-action="Index">Sale</a></li>
-                    <li><a asp-area="" asp-controller="Projekcije" asp-action="Index">Projekcije</a></li>
-                    <li><a asp-area="" asp-controller="Korisnici" asp-action="Index">Korisnici</a></li>
-                    <li><a asp-area="" asp-controller="Rezervacije" asp-action="Index">Rezervacije</a></li>
+                    @if (this.User.IsInRole("Admin"))
+                    {
+                        <li><a asp-area="" asp-controller="Sale" asp-action="Index">Sale</a></li>
+                        <li><a asp-area="" asp-controller="Projekcije" asp-action="Index">Projekcije</a></li>
+                        <li><a asp-area="" asp-controller="Korisnici" asp-action="Index">Korisnici</a></li>
+                        <li><a asp-area="" asp-controller="Rezervacije" asp-action="Index">Rezervacije</a></li>
+
+                    }
+                    
                 </ul>
                 @await Html.PartialAsync("_LoginPartial")
             </div>
@@ -44,7 +47,7 @@
         @RenderBody()
         <hr />
         <footer>
-            <p>&copy; 2018 - SistemZaRezervacijuKarata</p>
+            <p>&copy; 2018 - Sistem za rezervaciju karata - Darko Mišić 2305 - <a href="http://metropolitan.ac.rs">Univerzitet Metropolitan</a> - CS322</p>
         </footer>
     </div>
 
