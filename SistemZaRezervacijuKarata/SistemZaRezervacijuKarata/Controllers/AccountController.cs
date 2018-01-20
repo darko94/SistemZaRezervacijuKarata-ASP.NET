@@ -62,11 +62,18 @@ namespace SistemZaRezervacijuKarata.Controllers
                 // This doesn't count login failures towards account lockout
                 // To enable password failures to trigger account lockout, set lockoutOnFailure: true
                 var result = await _signInManager.PasswordSignInAsync(model.Email, model.Password, model.RememberMe, lockoutOnFailure: false);
-                if (result.Succeeded)
+                var user = await _userManager.FindByEmailAsync(model.Email);
+                if (!user.EmailConfirmed)
+                {
+                    ModelState.AddModelError(string.Empty, "Morate potvrditi nalog pre logovanja!");
+                    return View(model);
+                }
+                if (result.Succeeded && user.EmailConfirmed)
                 {
                     _logger.LogInformation("User logged in.");
                     return RedirectToLocal(returnUrl);
                 }
+                
                 if (result.RequiresTwoFactor)
                 {
                     return RedirectToAction(nameof(LoginWith2fa), new { returnUrl, model.RememberMe });
@@ -78,7 +85,7 @@ namespace SistemZaRezervacijuKarata.Controllers
                 }
                 else
                 {
-                    ModelState.AddModelError(string.Empty, "Invalid login attempt.");
+                    ModelState.AddModelError(string.Empty, "Pogrešni podaci!");
                     return View(model);
                 }
             }
