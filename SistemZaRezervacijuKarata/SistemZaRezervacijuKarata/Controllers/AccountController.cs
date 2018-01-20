@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Security.Claims;
@@ -371,8 +371,8 @@ namespace SistemZaRezervacijuKarata.Controllers
                 // visit https://go.microsoft.com/fwlink/?LinkID=532713
                 var code = await _userManager.GeneratePasswordResetTokenAsync(user);
                 var callbackUrl = Url.ResetPasswordCallbackLink(user.Id, code, Request.Scheme);
-                await _emailSender.SendEmailAsync(model.Email, "Reset Password",
-                   $"Please reset your password by clicking here: <a href='{callbackUrl}'>link</a>");
+                await _emailSender.SendEmailAsync(model.Email, "Reset lozinke",
+                   $"Molimo, kliknite na sledeće dugme kako biste resetovali svoju lozinku: <a href='{callbackUrl}'><button>RESETUJ LOZINKU</button></a>");
                 return RedirectToAction(nameof(ForgotPasswordConfirmation));
             }
 

@@ -12,7 +12,7 @@ namespace SistemZaRezervacijuKarata.Services
         public static Task SendEmailConfirmationAsync(this IEmailSender emailSender, string email, string link)
         {
             return emailSender.SendEmailAsync(email, "Potvrda naloga",
-                $"Molimo potvrdite Vaš nalog klikom na sledeći link: <a href='{HtmlEncoder.Default.Encode(link)}'>link</a>");
+                $"Poštovani,</br></br>Uspešno ste kreirali nalog! Molimo Vas da potvrdite Vaš nalog klikom na sledeće dugme: <a href='{HtmlEncoder.Default.Encode(link)}'><button>POTVRDI NALOG</button></a>");
         }
     }
 }
