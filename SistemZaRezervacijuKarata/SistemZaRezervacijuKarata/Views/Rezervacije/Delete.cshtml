@@ -1,39 +1,24 @@
 ﻿@model SistemZaRezervacijuKarata.Models.Rezervacija
 
 @{
-    ViewData["Title"] = "Delete";
+    ViewData["Title"] = "Brisanje rezervacije";
 }
 
-<h2>Delete</h2>
+<h2>Brisanje rezervacije</h2>
 
-<h3>Are you sure you want to delete this?</h3>
+<h3>Da li ste sigurni da želite da obrištet ovu rezervaciju?</h3>
 <div>
-    <h4>Rezervacija</h4>
     <hr />
-    <dl class="dl-horizontal">
-        <dt>
-            @Html.DisplayNameFor(model => model.BrojKarata)
-        </dt>
-        <dd>
-            @Html.DisplayFor(model => model.BrojKarata)
-        </dd>
-        <dt>
-            @Html.DisplayNameFor(model => model.Korisnik)
-        </dt>
-        <dd>
-            @Html.DisplayFor(model => model.Korisnik.ID)
-        </dd>
-        <dt>
-            @Html.DisplayNameFor(model => model.Projekcija)
-        </dt>
-        <dd>
-            @Html.DisplayFor(model => model.Projekcija.ID)
-        </dd>
-    </dl>
+    <h3>@Html.DisplayNameFor(model => model.BrojKarata) : @Html.DisplayFor(model => model.BrojKarata)</h3>
     
+    <h3>@Html.DisplayNameFor(model => model.Korisnik) : @Html.DisplayFor(model => model.Korisnik.Email)</h3>
+
+    <h3>@Html.DisplayNameFor(model => model.Projekcija.Film) : @Html.DisplayFor(model => model.Projekcija.Film.Naslov)</h3>
+           
+    <br />
     <form asp-action="Delete">
         <input type="hidden" asp-for="ID" />
-        <input type="submit" value="Delete" class="btn btn-default" /> |
-        <a asp-action="Index">Back to List</a>
+        <input type="submit" value="Obriši" class="btn btn-danger" /> |
+        <a asp-action="Index" asp-controller="Projekcije" class="btn btn-default btn-sm">Povratak na listu</a>
     </form>
 </div>

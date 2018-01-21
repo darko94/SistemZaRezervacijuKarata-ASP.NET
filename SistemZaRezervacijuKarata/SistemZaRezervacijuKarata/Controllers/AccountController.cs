@@ -342,7 +342,7 @@ namespace SistemZaRezervacijuKarata.Controllers
         {
             if (userId == null || code == null)
             {
-                return RedirectToAction(nameof(HomeController.Index), "Home");
+                return RedirectToAction(nameof(FilmoviController.Index), "Filmovi");
             }
             var user = await _userManager.FindByIdAsync(userId);
             if (user == null)

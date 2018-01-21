@@ -8,6 +8,7 @@ using Microsoft.EntityFrameworkCore;
 using SistemZaRezervacijuKarata.Models;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
+using SistemZaRezervacijuKarata.Services;
 
 namespace SistemZaRezervacijuKarata.Controllers
 {
@@ -16,17 +17,19 @@ namespace SistemZaRezervacijuKarata.Controllers
     {
         private readonly UserManager<ApplicationUser> _userManager;
         private readonly SistemZaRezervacijuKarataContext _context;
+        private readonly IEmailSender _emailSender;
 
-        public RezervacijeController(SistemZaRezervacijuKarataContext context, UserManager<ApplicationUser> userManager)
+        public RezervacijeController(SistemZaRezervacijuKarataContext context, UserManager<ApplicationUser> userManager, IEmailSender emailSender)
         {
             _context = context;
             _userManager = userManager;
+            _emailSender = emailSender;
         }
 
         // GET: Rezervacije
         public async Task<IActionResult> Index()
         {
-            var sistemZaRezervacijuKarataContext = _context.Rezervacija.Include(r => r.Korisnik).Include(r => r.Projekcija);
+            var sistemZaRezervacijuKarataContext = _context.Rezervacija.Include(r => r.Korisnik).Include(r => r.Projekcija).Include(r => r.Projekcija.Film);
             return View(await sistemZaRezervacijuKarataContext.ToListAsync());
         }
 
@@ -103,16 +106,50 @@ namespace SistemZaRezervacijuKarata.Controllers
             
             _context.Update(projekcija);
             await _context.SaveChangesAsync();
-            
+
             
 
             if (ModelState.IsValid)
             {
                 _context.Add(rezervacija);
                 await _context.SaveChangesAsync();
-                return RedirectToAction(nameof(FilmoviController.Index));
+
+                string ulaznice = "";
+                if (rezervacija.BrojKarata == 1)
+                {
+                    ulaznice = " ulaznicu";
+                }
+                else if (rezervacija.BrojKarata == 5)
+                {
+                    ulaznice = " ulaznica";
+                }
+                else
+                {
+                    ulaznice = " ulaznice";
+                }
+
+                string message = "Poštovani," +
+                "</br></br>" +
+                "Uspešno ste rezervisali " + rezervacija.BrojKarata + ulaznice + " za film " + projekcija.Film.Naslov + "!" +
+                "</br>" +
+                "Projekcija filma je " + projekcija.Datum.ToString("dd.MM.yyyy.") + " u " + projekcija.Vreme.ToString("HH:mm") + " sati." +
+                "</br></br>" +
+                "Molimo Vas da budete u bioskopu najkasnije pola sata pre projekcije, kako biste preuzeli svoje ulaznice." +
+                "</br></br>" +
+                "Hvala što koristite naš sistem!";
+
+
+                await _emailSender.SendEmailAsync(appUser.Email, "Uspešna rezervacija", message);
+
+                return RedirectToAction(nameof(RezervacijeController.Success));
             }
             return View(rezervacija);
+        }
+
+        //GET: Rezervacije/Success 
+        public IActionResult Success()
+        {
+            return View();
         }
 
         // GET: Rezervacije/Edit/5
@@ -179,6 +216,7 @@ namespace SistemZaRezervacijuKarata.Controllers
             var rezervacija = await _context.Rezervacija
                 .Include(r => r.Korisnik)
                 .Include(r => r.Projekcija)
+                .Include(r => r.Projekcija.Film)
                 .SingleOrDefaultAsync(m => m.ID == id);
             if (rezervacija == null)
             {
@@ -193,10 +231,20 @@ namespace SistemZaRezervacijuKarata.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
-            var rezervacija = await _context.Rezervacija.SingleOrDefaultAsync(m => m.ID == id);
+            var rezervacija = await _context.Rezervacija
+                 .Include(r => r.Projekcija)
+                 .SingleOrDefaultAsync(m => m.ID == id);
+
+            var projekcija = rezervacija.Projekcija;
+
+            projekcija.SlobodnoSedista += rezervacija.BrojKarata;
+
+            _context.Update(projekcija);
+            await _context.SaveChangesAsync();
+
             _context.Rezervacija.Remove(rezervacija);
             await _context.SaveChangesAsync();
-            return RedirectToAction(nameof(Index));
+            return RedirectToAction("Index","Projekcije");
         }
 
         private bool RezervacijaExists(int id)

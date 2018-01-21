@@ -4,49 +4,6 @@
     ViewData["Title"] = "Sale";
 }
 
-<!--<h2>Index</h2>
-
-<p>
-    <a asp-action="Create">Create New</a>
-</p>
-<table class="table">
-    <thead>
-        <tr>
-                <th>
-                    @Html.DisplayNameFor(model => model.Naziv)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.BrojSedista)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.Tehnologija)
-                </th>
-            <th></th>
-        </tr>
-    </thead>
-    <tbody>
-@foreach (var item in Model) {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.Naziv)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.BrojSedista)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Tehnologija)
-            </td>
-            <td>
-                <a asp-action="Edit" asp-route-id="@item.ID">Edit</a> |
-                <a asp-action="Details" asp-route-id="@item.ID">Details</a> |
-                <a asp-action="Delete" asp-route-id="@item.ID">Delete</a>
-            </td>
-        </tr>
-}
-    </tbody>
-</table>
-    -->
-
 <div class="container">
     <hr />
     <a asp-area="" asp-controller="Sale" asp-action="Create" class="btn btn-primary btn-lg">Dodaj novu salu</a>
@@ -68,7 +25,7 @@
                     <td>
                         <a asp-action="Edit" asp-route-id="@item.ID" style="color: black;"><span class="glyphicon glyphicon-pencil"></span> Izmeni</a> |
                         <a asp-action="Details" asp-route-id="@item.ID" style="color: black;"><span class="glyphicon glyphicon-info-sign"></span> Detalji</a> |
-                        <a asp-action="Delete" asp-route-id="@item.ID" style="color: black;"><span class="glyphicon glyphicon-remove"></span> Obriši</a>
+                        <a asp-action="Delete" asp-route-id="@item.ID" style="color: red;"><span class="glyphicon glyphicon-remove"></span> Obriši</a>
                     </td>
                 </tr>
             }

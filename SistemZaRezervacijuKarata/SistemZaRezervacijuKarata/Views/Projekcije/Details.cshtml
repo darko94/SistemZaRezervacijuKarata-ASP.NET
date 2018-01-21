@@ -26,4 +26,27 @@
     <a asp-action="Delete" asp-route-id="@Model.ID" class="btn btn-danger"><span class="glyphicon glyphicon-remove"></span> Obriši</a>
 </div>
 <br />
+<hr />
+<table class="table table-striped table-hover">
+    <thead>
+        <tr class="active" style="color: black;">
+            <th>Email</th>
+            <th>Broj karata</th>
+            <th></th>
+        </tr>
+        @foreach (var item in Model.Rezervacije)
+        {
+            <tr class="info" style="color: black;">
+                <td>@item.Korisnik.Email</td>
+                <td>@item.BrojKarata</td>
+                <td>
+                    <a asp-controller="Rezervacije" asp-action="Delete" asp-route-id="@item.ID" class="btn btn-danger" style="margin: 10px;">Obriši rezervaciju</a>
+                </td>
+            </tr>
+
+        }
+
+
+    </thead>
+</table>
 <a asp-action="Index" class="btn btn-default">Povratak na listu</a>

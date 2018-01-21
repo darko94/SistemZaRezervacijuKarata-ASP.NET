@@ -44,6 +44,8 @@ namespace SistemZaRezervacijuKarata.Controllers
                 return NotFound();
             }
 
+            projekcija.Rezervacije= _context.Rezervacija.Include(r => r.Korisnik).Where(r => r.ProjekcijaId == id).ToList();
+
             return View(projekcija);
         }
 

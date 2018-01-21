@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 
 namespace SistemZaRezervacijuKarata.Models
@@ -22,5 +23,7 @@ namespace SistemZaRezervacijuKarata.Models
         [Display(Name = "Slobodno sedišta")]
         [Required]
         public int SlobodnoSedista { get; set; }
+
+        public virtual ICollection<Rezervacija> Rezervacije { get; set; }
     }
 }

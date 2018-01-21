@@ -1,47 +1,31 @@
 ﻿@model IEnumerable<SistemZaRezervacijuKarata.Models.Rezervacija>
 
 @{
-    ViewData["Title"] = "Index";
+    ViewData["Title"] = "Rezervacije";
 }
 
-<h2>Index</h2>
+<div class="container">
+    <hr />
+    <table class="table table-striped table-hover">
+        <thead>
+            <tr class="active" style="color: black;">
+                <th>@Html.DisplayNameFor(model => model.BrojKarata)</th>
+                <th>@Html.DisplayNameFor(model => model.Korisnik)</th>
+                <th>@Html.DisplayNameFor(model => model.Projekcija)</th>
+                <th></th>
+            </tr>
+            @foreach (var item in Model)
+            {
+                <tr class="info" style="color: black;">
+                    <td>@item.BrojKarata</td>
+                    <td>@item.Korisnik.Email</td>
+                    <td>@item.Projekcija.Film.Naslov - @item.Projekcija.Datum.ToString("dd.MM.yyyy.") - @item.Projekcija.Vreme.ToString("HH:mm")</td>
+                    <td>
+                        <a asp-action="Delete" asp-route-id="@item.ID" style="color: red;"><span class="glyphicon glyphicon-remove"></span> Obriši</a>
+                    </td>
+                </tr>
 
-<p>
-    <a asp-action="Create">Create New</a>
-</p>
-<table class="table">
-    <thead>
-        <tr>
-                <th>
-                    @Html.DisplayNameFor(model => model.BrojKarata)
-                </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Korisnik.UserName)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Projekcija)
-            </th>
-            <th></th>
-        </tr>
-    </thead>
-    <tbody>
-@foreach (var item in Model) {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.BrojKarata)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Korisnik.UserName)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Projekcija.ID)
-            </td>
-            <td>
-                <a asp-action="Edit" asp-route-id="@item.ID">Edit</a> |
-                <a asp-action="Details" asp-route-id="@item.ID">Details</a> |
-                <a asp-action="Delete" asp-route-id="@item.ID">Delete</a>
-            </td>
-        </tr>
-}
-    </tbody>
-</table>
+            }
+        </thead>
+    </table>
+</div>

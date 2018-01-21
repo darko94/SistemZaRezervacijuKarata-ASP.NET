@@ -11,9 +11,10 @@ using System;
 namespace SistemZaRezervacijuKarata.Migrations
 {
     [DbContext(typeof(SistemZaRezervacijuKarataContext))]
-    partial class SistemZaRezervacijuKarataContextModelSnapshot : ModelSnapshot
+    [Migration("20180121172513_ObrisanKorisnik")]
+    partial class ObrisanKorisnik
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder

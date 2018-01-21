@@ -20,9 +20,7 @@ namespace SistemZaRezervacijuKarata.Models
         public DbSet<SistemZaRezervacijuKarata.Models.Sala> Sala { get; set; }
 
         public DbSet<SistemZaRezervacijuKarata.Models.Projekcija> Projekcija { get; set; }
-
-        public DbSet<SistemZaRezervacijuKarata.Models.Korisnik> Korisnik { get; set; }
-
+        
         public DbSet<SistemZaRezervacijuKarata.Models.Rezervacija> Rezervacija { get; set; }
     }
 }
