@@ -7,17 +7,20 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using SistemZaRezervacijuKarata.Models;
 using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Identity;
 
 namespace SistemZaRezervacijuKarata.Controllers
 {
-    [Authorize(Roles = "Admin")]
+    [Authorize]
     public class RezervacijeController : Controller
     {
+        private readonly UserManager<ApplicationUser> _userManager;
         private readonly SistemZaRezervacijuKarataContext _context;
 
-        public RezervacijeController(SistemZaRezervacijuKarataContext context)
+        public RezervacijeController(SistemZaRezervacijuKarataContext context, UserManager<ApplicationUser> userManager)
         {
             _context = context;
+            _userManager = userManager;
         }
 
         // GET: Rezervacije
@@ -48,28 +51,67 @@ namespace SistemZaRezervacijuKarata.Controllers
         }
 
         // GET: Rezervacije/Create
-        public IActionResult Create()
+        public async Task<IActionResult> Create(int projekcijaId)
         {
-            ViewData["KorisnikId"] = new SelectList(_context.Korisnik, "ID", "ID");
-            ViewData["ProjekcijaId"] = new SelectList(_context.Projekcija, "ID", "ID");
-            return View();
+
+            var projekcija = await _context.Projekcija
+                .Include(p => p.Film)
+                .Include(p => p.Sala)
+                .SingleOrDefaultAsync(p => p.ID == projekcijaId);
+
+
+            
+
+            Rezervacija rezervacija = new Rezervacija();
+            
+
+            rezervacija.ProjekcijaId = projekcijaId;
+            rezervacija.Projekcija = projekcija;
+           
+
+            
+            return View(rezervacija);
         }
+        
+
 
         // POST: Rezervacije/Create
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("ID,KorisnikId,ProjekcijaId,BrojKarata")] Rezervacija rezervacija)
+        public async Task<IActionResult> Create([Bind("ID,ApplicationUserId,ProjekcijaId,BrojKarata")] Rezervacija rezervacija)
         {
+            var projekcija = await _context.Projekcija
+                .Include(p => p.Film)
+                .Include(p => p.Sala)
+                .SingleOrDefaultAsync(p => p.ID == rezervacija.ProjekcijaId);
+
+            if(rezervacija.BrojKarata > projekcija.SlobodnoSedista)
+            {
+                ModelState.AddModelError("BrojKarata", "Nažalost, nema dovoljno slobodnih mesta za odabranu projekciju. Molimo pokušajte rezervaciju manjeg broja karata ili neku drugu projekciju.");
+                rezervacija.Projekcija = projekcija;
+                return View(rezervacija);
+            }
+
+            var appUser = await _userManager.FindByEmailAsync(rezervacija.ApplicationUserId);
+
+            rezervacija.ApplicationUserId = appUser.Id;
+
+            
+            projekcija.SlobodnoSedista -= rezervacija.BrojKarata;
+            
+            _context.Update(projekcija);
+            await _context.SaveChangesAsync();
+            
+            
+
             if (ModelState.IsValid)
             {
                 _context.Add(rezervacija);
                 await _context.SaveChangesAsync();
-                return RedirectToAction(nameof(Index));
+                return RedirectToAction(nameof(FilmoviController.Index));
             }
-            ViewData["KorisnikId"] = new SelectList(_context.Korisnik, "ID", "ID", rezervacija.KorisnikId);
-            ViewData["ProjekcijaId"] = new SelectList(_context.Projekcija, "ID", "ID", rezervacija.ProjekcijaId);
             return View(rezervacija);
         }
 
@@ -86,7 +128,6 @@ namespace SistemZaRezervacijuKarata.Controllers
             {
                 return NotFound();
             }
-            ViewData["KorisnikId"] = new SelectList(_context.Korisnik, "ID", "ID", rezervacija.KorisnikId);
             ViewData["ProjekcijaId"] = new SelectList(_context.Projekcija, "ID", "ID", rezervacija.ProjekcijaId);
             return View(rezervacija);
         }
@@ -96,7 +137,7 @@ namespace SistemZaRezervacijuKarata.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("ID,KorisnikId,ProjekcijaId,BrojKarata")] Rezervacija rezervacija)
+        public async Task<IActionResult> Edit(int id, [Bind("ID,ApplicationUserId,ProjekcijaId,BrojKarata")] Rezervacija rezervacija)
         {
             if (id != rezervacija.ID)
             {
@@ -123,7 +164,6 @@ namespace SistemZaRezervacijuKarata.Controllers
                 }
                 return RedirectToAction(nameof(Index));
             }
-            ViewData["KorisnikId"] = new SelectList(_context.Korisnik, "ID", "ID", rezervacija.KorisnikId);
             ViewData["ProjekcijaId"] = new SelectList(_context.Projekcija, "ID", "ID", rezervacija.ProjekcijaId);
             return View(rezervacija);
         }

@@ -1,82 +1,8 @@
 ﻿@model SistemZaRezervacijuKarata.Models.Film
 
 @{
-    ViewData["Title"] = "Details";
+    ViewData["Title"] = "Detalji o filmu";
 }
-<!--
-<h2>Details</h2>
-
-<div>
-    <h4>Film</h4>
-    <hr />
-    <dl class="dl-horizontal">
-        <dt>
-            @Html.DisplayNameFor(model => model.Naslov)
-        </dt>
-        <dd>
-            @Html.DisplayFor(model => model.Naslov)
-        </dd>
-        <dt>
-            @Html.DisplayNameFor(model => model.OrgininalniNaslov)
-        </dt>
-        <dd>
-            @Html.DisplayFor(model => model.OrgininalniNaslov)
-        </dd>
-        <dt>
-            @Html.DisplayNameFor(model => model.PocetakPrikazivanja)
-        </dt>
-        <dd>
-            @Html.DisplayFor(model => model.PocetakPrikazivanja)
-        </dd>
-        <dt>
-            @Html.DisplayNameFor(model => model.DuzinaTranjanja)
-        </dt>
-        <dd>
-            @Html.DisplayFor(model => model.DuzinaTranjanja)
-        </dd>
-        <dt>
-            @Html.DisplayNameFor(model => model.Drzava)
-        </dt>
-        <dd>
-            @Html.DisplayFor(model => model.Drzava)
-        </dd>
-        <dt>
-            @Html.DisplayNameFor(model => model.Godina)
-        </dt>
-        <dd>
-            @Html.DisplayFor(model => model.Godina)
-        </dd>
-        <dt>
-            @Html.DisplayNameFor(model => model.Zanr)
-        </dt>
-        <dd>
-            @Html.DisplayFor(model => model.Zanr)
-        </dd>
-        <dt>
-            @Html.DisplayNameFor(model => model.Opis)
-        </dt>
-        <dd>
-            @Html.DisplayFor(model => model.Opis)
-        </dd>
-        <dt>
-            @Html.DisplayNameFor(model => model.YoutubeUrl)
-        </dt>
-        <dd>
-            @Html.DisplayFor(model => model.YoutubeUrl)
-        </dd>
-        <dt>
-            @Html.DisplayNameFor(model => model.SlikaUrl)
-        </dt>
-        <dd>
-            @Html.DisplayFor(model => model.SlikaUrl)
-        </dd>
-    </dl>
-</div>
-<div>
-    <a asp-action="Edit" asp-route-id="@Model.ID">Edit</a> |
-    <a asp-action="Index">Back to List</a>
-</div>
--->
 
 <div class="col-md-12">
     <h1>@Html.DisplayFor(model => model.Naslov)</h1>
@@ -152,7 +78,7 @@
         <div style="margin-left: 50px; margin-right: 50px;">
             @foreach (var item in Model.Projekcije)
             {
-                <a asp-action="" class="btn btn-primary" style="margin: 10px;">
+                <a asp-controller="Rezervacije" asp-action="Create" asp-route-projekcijaId="@item.ID" class="btn btn-primary" style="margin: 10px;"> 
                     <p>@item.Datum.Day.@item.Datum.Month.@item.Datum.Year., @item.Vreme.ToShortTimeString() - @item.Sala.Naziv</p>
                 </a>
 

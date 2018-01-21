@@ -16,7 +16,7 @@
                     @Html.DisplayNameFor(model => model.BrojKarata)
                 </th>
             <th>
-                @Html.DisplayNameFor(model => model.Korisnik)
+                @Html.DisplayNameFor(model => model.Korisnik.UserName)
             </th>
             <th>
                 @Html.DisplayNameFor(model => model.Projekcija)
@@ -31,7 +31,7 @@
                 @Html.DisplayFor(modelItem => item.BrojKarata)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.Korisnik.ID)
+                @Html.DisplayFor(modelItem => item.Korisnik.UserName)
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.Projekcija.ID)
